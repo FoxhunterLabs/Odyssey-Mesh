@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "odyssey-mesh"
+version = "1.0.0"
+description = "Governance-grade evidence transport and reconciliation for maritime sensing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Odyssey Mesh License" }
+
+authors = [
+  { name = "Odyssey Systems" }
+]
+
+keywords = [
+  "autonomy",
+  "governance",
+  "deterministic-systems",
+  "evidence",
+  "maritime",
+  "human-in-the-loop"
+]
+
+dependencies = [
+  "streamlit>=1.30",
+  "pandas>=2.0",
+  "plotly>=5.18"
+]
+
+[project.optional-dependencies]
+dev = [
+  "black",
+  "ruff",
+  "mypy"
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/odyssey-mesh"
+Repository = "https://github.com/your-org/odyssey-mesh"
+
+[project.scripts]
+odyssey-sim = "odyssey.sim.orchestrator:OdysseySimulation"
+
+[tool.setuptools]
+packages = ["odyssey", "odyssey.core", "odyssey.sim"]
+
+[tool.setuptools.package-data]
+odyssey = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+ignore = ["E501"]
