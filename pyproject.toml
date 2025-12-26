@@ -15,12 +15,12 @@ authors = [
 ]
 
 keywords = [
-  "autonomy",
-  "governance",
   "deterministic-systems",
   "evidence",
+  "governance",
+  "human-in-the-loop",
   "maritime",
-  "human-in-the-loop"
+  "autonomy"
 ]
 
 dependencies = [
@@ -31,6 +31,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "pytest",
   "black",
   "ruff",
   "mypy"
@@ -40,15 +41,28 @@ dev = [
 Homepage = "https://github.com/your-org/odyssey-mesh"
 Repository = "https://github.com/your-org/odyssey-mesh"
 
+# ----------------------------
+# CLI entrypoint
+# ----------------------------
 [project.scripts]
-odyssey-sim = "odyssey.sim.orchestrator:OdysseySimulation"
+odyssey = "odyssey.cli:main"
 
+# ----------------------------
+# Packaging
+# ----------------------------
 [tool.setuptools]
-packages = ["odyssey", "odyssey.core", "odyssey.sim"]
+packages = [
+  "odyssey",
+  "odyssey.core",
+  "odyssey.sim"
+]
 
 [tool.setuptools.package-data]
 odyssey = ["py.typed"]
 
+# ----------------------------
+# Tooling config
+# ----------------------------
 [tool.black]
 line-length = 100
 target-version = ["py310"]
@@ -57,3 +71,8 @@ target-version = ["py310"]
 line-length = 100
 select = ["E", "F", "I"]
 ignore = ["E501"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = "-q"
